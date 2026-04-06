@@ -837,7 +837,7 @@ class Worker:
         )
 
         # Initiate core worker shutdown
-        await self._bridge_worker.initiate_shutdown()
+        self._bridge_worker.initiate_shutdown()
 
         # If any worker task had an exception, replace that task with a queue drain
         for worker, task in tasks.items():

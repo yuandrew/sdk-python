@@ -638,7 +638,7 @@ class _WorkflowWorker:  # type:ignore[reportUnusedClass]
             except Exception as e:
                 self._throw_after_activation = e
                 logger.debug("Shutting down worker on eviction hook exception")
-                await self._bridge_worker().initiate_shutdown()
+                self._bridge_worker().initiate_shutdown()
 
     def _create_workflow_instance(
         self,

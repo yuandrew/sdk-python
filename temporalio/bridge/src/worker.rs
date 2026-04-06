@@ -683,12 +683,11 @@ impl WorkerRef {
             .map_err(|err| PyValueError::new_err(format!("Failed replacing client: {err}")))
     }
 
-    fn initiate_shutdown<'p>(&self, py: Python<'p>) -> PyResult<Bound<'p, PyAny>> {
+    fn initiate_shutdown(&self) -> PyResult<()> {
+        enter_sync!(self.runtime);
         let worker = self.worker.as_ref().unwrap().clone();
-        self.runtime.future_into_py(py, async move {
-            worker.initiate_shutdown().await;
-            Ok(())
-        })
+        worker.initiate_shutdown();
+        Ok(())
     }
 
     fn finalize_shutdown<'p>(&mut self, py: Python<'p>) -> PyResult<Bound<'p, PyAny>> {

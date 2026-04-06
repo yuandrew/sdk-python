@@ -265,9 +265,9 @@ class Worker:
         """Replace the worker client."""
         self._ref.replace_client(client._ref)  # type: ignore[reportOptionalMemberAccess]
 
-    async def initiate_shutdown(self) -> None:
+    def initiate_shutdown(self) -> None:
         """Start shutdown of the worker."""
-        await self._ref.initiate_shutdown()  # type: ignore[reportOptionalMemberAccess]
+        self._ref.initiate_shutdown()  # type: ignore[reportOptionalMemberAccess]
 
     async def finalize_shutdown(self) -> None:
         """Finalize the worker.

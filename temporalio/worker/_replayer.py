@@ -390,7 +390,7 @@ class Replayer:
                 # We must shutdown here
                 try:
                     if bridge_worker_scope is not None:
-                        await bridge_worker_scope.initiate_shutdown()
+                        bridge_worker_scope.initiate_shutdown()
                         await bridge_worker_scope.finalize_shutdown()
                 except Exception:
                     logger.warning("Failed to finalize shutdown", exc_info=True)
